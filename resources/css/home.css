@@ -1,0 +1,451 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Анимации */
+@keyframes fadeInUp {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes slideInLeft {
+    from { transform: translateX(-20%); opacity: 0; }
+    to { transform: translateX(0); opacity: 1; }
+}
+
+@keyframes slideInUp {
+    from { transform: translateY(20px); opacity: 0; }
+    to { transform: translateY(0); opacity: 1; }
+}
+
+@keyframes slideInRight {
+    from { opacity: 0; transform: translateX(20%); }
+    to { opacity: 1; transform: translateX(0); }
+}
+
+@keyframes pulse {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.05); }
+    100% { transform: scale(1); }
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+/* Основной контейнер */
+#home {
+    @apply flex flex-col min-h-screen;
+}
+
+#home-main {
+    @apply flex-1;
+}
+
+/* Герой-секция */
+#home-hero {
+    @apply relative py-16 lg:py-24 flex items-center justify-center;
+    min-height: 80vh;
+}
+
+#home-hero-overlay {
+    @apply absolute inset-0 bg-gradient-to-b from-noble-purple/70 to-background-dark/90;
+}
+
+#home-hero-content {
+    @apply relative z-10 container flex flex-col items-center justify-center text-center;
+}
+
+#home-hero-title {
+    @apply text-5xl sm:text-6xl lg:text-7xl font-extrabold text-white;
+    text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.3);
+    animation: fadeInUp 1s ease-out;
+}
+
+.mud-dark-theme #home-hero-title {
+    @apply text-white;
+}
+
+#home-hero-subtitle {
+    @apply text-xl sm:text-2xl text-gray-200 mt-4 mb-8;
+    animation: fadeInUp 1s ease-out 0.2s forwards;
+    opacity: 0;
+}
+
+.mud-dark-theme #home-hero-subtitle {
+    @apply text-gray-300;
+}
+
+#home-hero-cta {
+    @apply flex flex-col sm:flex-row justify-center gap-4 mt-6;
+    animation: fadeInUp 1s ease-out 0.4s forwards;
+    opacity: 0;
+}
+
+#home-hero-cta-register,
+#home-hero-cta-login,
+#home-hero-cta-google {
+    @apply px-8 py-4 bg-gradient-to-r from-noble-purple to-noble-purple-light text-white rounded-xl text-lg font-semibold transition-all duration-300;
+    box-shadow: 0 4px 15px rgba(var(--primary-rgb), 0.2);
+}
+
+#home-hero-cta-register:hover,
+#home-hero-cta-login:hover,
+#home-hero-cta-google:hover {
+    @apply transform scale-105;
+    background: linear-gradient(90deg, var(--primary-hover), var(--secondary-hover));
+    box-shadow: 0 6px 20px rgba(var(--primary-rgb), 0.3);
+}
+
+#home-hero-cta-register.home-hero-cta-secondary,
+#home-hero-cta-login.home-hero-cta-secondary,
+#home-hero-cta-google.home-hero-cta-secondary {
+    @apply bg-transparent border-2 border-noble-purple text-noble-purple;
+}
+
+#home-hero-cta-register.home-hero-cta-secondary:hover,
+#home-hero-cta-login.home-hero-cta-secondary:hover,
+#home-hero-cta-google.home-hero-cta-secondary:hover {
+    @apply bg-noble-purple/10 text-noble-purple-hover border-noble-purple-hover;
+}
+
+.mud-dark-theme #home-hero-cta-register.home-hero-cta-secondary,
+.mud-dark-theme #home-hero-cta-login.home-hero-cta-secondary,
+.mud-dark-theme #home-hero-cta-google.home-hero-cta-secondary {
+    @apply border-noble-purple-light text-noble-purple-light;
+}
+
+.mud-dark-theme #home-hero-cta-register.home-hero-cta-secondary:hover,
+.mud-dark-theme #home-hero-cta-login.home-hero-cta-secondary:hover,
+.mud-dark-theme #home-hero-cta-google.home-hero-cta-secondary:hover {
+    @apply bg-gray-700 text-noble-purple-light-hover border-noble-purple-light-hover;
+}
+
+#home-hero-image-wrapper {
+    @apply mt-12 lg:w-1/2 flex justify-center;
+    animation: slideInRight 1s ease-out 0.6s forwards;
+    opacity: 0;
+}
+
+#home-hero-image {
+    @apply rounded-2xl overflow-hidden shadow-xl max-w-full w-full sm:w-3/4 lg:w-full transition-transform;
+}
+
+#home-hero-image:hover {
+    @apply transform scale-105;
+}
+
+.mud-dark-theme #home-hero-image {
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.5);
+}
+
+/* Видео-секция */
+#home-video {
+    @apply py-16;
+    background: linear-gradient(to bottom, #f0f4ff, #e0eaff);
+}
+
+.mud-dark-theme #home-video {
+    background: linear-gradient(to bottom, #1e2a44, #2c2c38);
+}
+
+#home-video-title {
+    @apply text-4xl sm:text-5xl font-bold text-gray-800 uppercase tracking-widest mb-12 text-center;
+    animation: fadeInUp 1s ease-out;
+}
+
+.mud-dark-theme #home-video-title {
+    @apply text-white;
+}
+
+#home-video-container {
+    @apply max-w-4xl mx-auto;
+    animation: fadeInUp 1s ease-out 0.2s forwards;
+    opacity: 0;
+}
+
+/* Преимущества */
+#home-features {
+    @apply py-16;
+    background: linear-gradient(to bottom, #fff, #f9f9f9);
+}
+
+.mud-dark-theme #home-features {
+    background: linear-gradient(to bottom, #222, #2c2c38);
+}
+
+#home-features-title {
+    @apply text-4xl sm:text-5xl font-bold text-gray-800 uppercase tracking-widest mb-12 text-center;
+    animation: fadeInUp 1s ease-out;
+}
+
+.mud-dark-theme #home-features-title {
+    @apply text-white;
+}
+
+#home-features-grid {
+    @apply grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8;
+}
+
+#home-feature-card-1,
+#home-feature-card-2,
+#home-feature-card-3 {
+    @apply p-6 rounded-xl bg-white/95 shadow-md transition-all text-center space-y-4;
+}
+
+.mud-dark-theme #home-feature-card-1,
+.mud-dark-theme #home-feature-card-2,
+.mud-dark-theme #home-feature-card-3 {
+    @apply bg-gray-700;
+}
+
+#home-feature-card-1:hover,
+#home-feature-card-2:hover,
+#home-feature-card-3:hover {
+    @apply transform translate-y-[-10px];
+    box-shadow: 0 20px 40px rgba(25, 118, 210, 0.3);
+}
+
+#home-feature-icon-1,
+#home-feature-icon-2,
+#home-feature-icon-3 {
+    @apply text-5xl text-noble-purple;
+}
+
+.mud-dark-theme #home-feature-icon-1,
+.mud-dark-theme #home-feature-icon-2,
+.mud-dark-theme #home-feature-icon-3 {
+    @apply text-noble-purple-light;
+}
+
+#home-feature-title-1,
+#home-feature-title-2,
+#home-feature-title-3 {
+    @apply text-xl font-semibold text-gray-800;
+}
+
+.mud-dark-theme #home-feature-title-1,
+.mud-dark-theme #home-feature-title-2,
+.mud-dark-theme #home-feature-title-3 {
+    @apply text-white;
+}
+
+#home-feature-desc-1,
+#home-feature-desc-2,
+#home-feature-desc-3 {
+    @apply text-base text-gray-600;
+}
+
+.mud-dark-theme #home-feature-desc-1,
+.mud-dark-theme #home-feature-desc-2,
+.mud-dark-theme #home-feature-desc-3 {
+    @apply text-gray-300;
+}
+
+#home-feature-card-1.animate-slide-in-left {
+    animation: slideInLeft 0.6s ease-out forwards;
+}
+
+#home-feature-card-2.animate-slide-in-up {
+    animation: slideInUp 0.6s ease-out forwards;
+}
+
+#home-feature-card-3.animate-slide-in-right {
+    animation: slideInRight 0.6s ease-out forwards;
+}
+
+/* Отзывы */
+#home-testimonials {
+    @apply py-16;
+    background: linear-gradient(to bottom, #fff, #f9f9f9);
+}
+
+.mud-dark-theme #home-testimonials {
+    background: linear-gradient(to bottom, #222, #2c2c38);
+}
+
+#home-testimonials-title {
+    @apply text-4xl sm:text-5xl font-bold text-gray-800 uppercase tracking-widest mb-12 text-center;
+    animation: fadeInUp 1s ease-out;
+}
+
+.mud-dark-theme #home-testimonials-title {
+    @apply text-white;
+}
+
+#home-testimonials-grid {
+    @apply grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8;
+}
+
+#home-testimonial-1,
+#home-testimonial-2,
+#home-testimonial-3 {
+    @apply p-6 rounded-xl bg-white/95 shadow-md transition-all text-center space-y-4;
+}
+
+.mud-dark-theme #home-testimonial-1,
+.mud-dark-theme #home-testimonial-2,
+.mud-dark-theme #home-testimonial-3 {
+    @apply bg-gray-700;
+}
+
+#home-testimonial-1:hover,
+#home-testimonial-2:hover,
+#home-testimonial-3:hover {
+    @apply transform translate-y-[-10px];
+    box-shadow: 0 20px 40px rgba(25, 118, 210, 0.3);
+}
+
+#home-testimonial-quote-1,
+#home-testimonial-quote-2,
+#home-testimonial-quote-3 {
+    @apply italic text-lg text-gray-800;
+}
+
+.mud-dark-theme #home-testimonial-quote-1,
+.mud-dark-theme #home-testimonial-quote-2,
+.mud-dark-theme #home-testimonial-quote-3 {
+    @apply text-white;
+}
+
+#home-testimonial-author-1,
+#home-testimonial-author-2,
+#home-testimonial-author-3 {
+    @apply text-sm text-gray-600 block;
+}
+
+.mud-dark-theme #home-testimonial-author-1,
+.mud-dark-theme #home-testimonial-author-2,
+.mud-dark-theme #home-testimonial-author-3 {
+    @apply text-gray-300;
+}
+
+#home-testimonial-1.animate-slide-in-left {
+    animation: slideInLeft 0.6s ease-out forwards;
+}
+
+#home-testimonial-2.animate-slide-in-up {
+    animation: slideInUp 0.6s ease-out forwards;
+}
+
+#home-testimonial-3.animate-slide-in-right {
+    animation: slideInRight 0.6s ease-out forwards;
+}
+
+/* Контакты */
+#home-contact {
+    @apply py-16;
+    background: linear-gradient(to bottom, #f0f4ff, #e0eaff);
+}
+
+.mud-dark-theme #home-contact {
+    background: linear-gradient(to bottom, #1e2a44, #2c2c38);
+}
+
+#home-contact-title {
+    @apply text-4xl sm:text-5xl font-bold text-gray-800 uppercase tracking-widest mb-12 text-center;
+    animation: fadeInUp 1s ease-out;
+}
+
+.mud-dark-theme #home-contact-title {
+    @apply text-white;
+}
+
+#home-contact-grid {
+    @apply max-w-3xl mx-auto px-4 sm:px-6 lg:px-8;
+}
+
+#home-contact-card {
+    @apply p-8 rounded-xl bg-white shadow-md space-y-4;
+}
+
+.mud-dark-theme #home-contact-card {
+    @apply bg-gray-700;
+}
+
+#home-contact-desc {
+    @apply text-lg text-gray-600 mb-6;
+}
+
+.mud-dark-theme #home-contact-desc {
+    @apply text-gray-300;
+}
+
+#home-contact-email,
+#home-contact-message {
+    @apply w-full p-3 mb-4 border-2 rounded-lg text-base transition-colors bg-white;
+    border-color: var(--border-light);
+}
+
+#home-contact-message {
+    @apply h-32 resize-none;
+}
+
+#home-contact-email:focus,
+#home-contact-message:focus {
+    border-color: var(--primary-color);
+    outline: none;
+}
+
+.mud-dark-theme #home-contact-email,
+.mud-dark-theme #home-contact-message {
+    @apply bg-gray-600 text-white;
+    border-color: var(--border-dark);
+}
+
+#home-contact-button {
+    @apply px-6 py-3 bg-gradient-to-r from-noble-purple to-noble-purple-light text-white rounded-lg text-lg font-semibold transition-all w-full;
+}
+
+#home-contact-button:hover {
+    background: linear-gradient(90deg, var(--primary-hover), var(--secondary-hover));
+    transform: scale(1.05);
+}
+
+/* Адаптивность */
+@media (max-width: 1024px) {
+    #home-hero {
+        @apply min-h-[600px] py-12;
+    }
+    #home-hero-title {
+        @apply text-4xl;
+    }
+    #home-hero-image-wrapper {
+        @apply w-full mt-8;
+    }
+    #home-hero-image {
+        @apply w-3/4 mx-auto;
+    }
+}
+
+@media (max-width: 640px) {
+    #home-hero {
+        @apply min-h-[500px] py-8;
+    }
+    #home-hero-title {
+        @apply text-3xl;
+    }
+    #home-hero-subtitle {
+        @apply text-lg;
+    }
+    #home-hero-cta-register,
+    #home-hero-cta-login,
+    #home-hero-cta-google {
+        @apply w-full;
+    }
+    #home-feature-card-1,
+    #home-feature-card-2,
+    #home-feature-card-3 {
+        @apply p-4;
+    }
+    #home-features-title,
+    #home-video-title,
+    #home-testimonials-title,
+    #home-contact-title {
+        @apply text-2xl mb-8;
+    }
+    #home-contact-card {
+        @apply p-6;
+    }
+}

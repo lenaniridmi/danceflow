@@ -1,0 +1,152 @@
+@import url('https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400;700&family=JetBrains+Mono:wght@400;700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Переменные */
+:root {
+  --primary-color: #4B0082; /* Благородный темный фиолетовый */
+  --secondary-color: #8A2BE2; /* Более светлый фиолетовый для градиента */
+  --primary-hover: #6A0DAD; /* Чуть светлее для hover-эффекта */
+  --secondary-hover: #9B4DCA; /* Чуть светлее для hover-эффекта */
+  --background-light: #F5F5FA; /* Очень светлый серо-фиолетовый фон */
+  --background-dark: #1A1A2E; /* Темный фон с фиолетовым оттенком */
+  --card-bg-light: #FFFFFF; /* Белый для карточек в светлой теме */
+  --card-bg-dark: #2C2C38; /* Темный для карточек в темной теме */
+  --shadow-light: rgba(75, 0, 130, 0.1); /* Тень с легким фиолетовым оттенком */
+  --shadow-dark: rgba(0, 0, 0, 0.5); /* Темная тень */
+  --border-light: #E0E0E0; /* Светлая граница */
+  --border-dark: #444; /* Темная граница */
+  --text-light: #2D3436; /* Темный текст для светлой темы */
+  --text-dark: #E5E7EB; /* Светлый текст для темной темы */
+  --text-secondary: #666666; /* Вторичный текст для светлой темы */
+  --transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  --primary-rgb: 75, 0, 130; /* RGB для теней и эффектов */
+  --secondary-rgb: 138, 43, 226; /* RGB для теней и эффектов */
+}
+
+/* Базовые стили */
+@layer base {
+  body {
+      font-family: 'Instrument Sans', sans-serif;
+      min-height: 100vh;
+      background: linear-gradient(135deg, var(--background-light), #E6E6FA);
+      color: var(--text-light);
+      transition: background var(--transition), color var(--transition);
+  }
+
+  .mud-dark-theme {
+      background: linear-gradient(135deg, var(--background-dark), #2E1A47);
+      color: var(--text-dark);
+      --text-secondary: #BBBBBB;
+  }
+
+  h1 {
+      @apply text-4xl sm:text-5xl lg:text-6xl font-extrabold text-gray-800;
+      text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+  }
+
+  .mud-dark-theme h1 {
+      @apply text-white;
+  }
+
+  button {
+      @apply bg-gradient-to-r from-[var(--primary-color)] to-[var(--secondary-color)] text-white px-6 py-3 rounded-xl font-semibold transition-all duration-300 ease-in-out;
+      box-shadow: 0 4px 15px rgba(var(--primary-rgb), 0.2);
+  }
+
+  button:hover {
+      @apply transform scale-105;
+      background: linear-gradient(90deg, var(--primary-hover), var(--secondary-hover));
+      box-shadow: 0 6px 20px rgba(var(--primary-rgb), 0.3);
+  }
+
+  a {
+      @apply text-[var(--primary-color)] hover:underline transition-colors duration-300;
+  }
+
+  .mud-dark-theme a {
+      @apply text-[var(--secondary-color)];
+  }
+
+  #app-root {
+      @apply min-h-screen flex flex-col;
+  }
+}
+
+/* Анимации */
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes pulse {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.05); }
+  100% { transform: scale(1); }
+}
+
+@keyframes slideInLeft {
+  from { transform: translateX(-20%); opacity: 0; }
+  to { transform: translateX(0); opacity: 1; }
+}
+
+@keyframes slideInRight {
+  from { opacity: 0; transform: translateX(20%); }
+  to { opacity: 1; transform: translateX(0); }
+}
+
+@keyframes slideDown {
+  from { opacity: 0; transform: translateY(-10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+/* Общие стили для компонентов */
+.container {
+  @apply max-w-7xl mx-auto px-4 sm:px-6 lg:px-8;
+}
+
+.card {
+  @apply p-6 rounded-xl bg-white shadow-lg transition-all duration-300;
+}
+
+.mud-dark-theme .card {
+  @apply bg-gray-800;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
+}
+
+.card:hover {
+  @apply transform scale-105;
+  box-shadow: 0 8px 25px rgba(var(--primary-rgb), 0.3);
+}
+
+.global-button {
+  @apply bg-[var(--primary-color)] text-white px-4 py-2 rounded-lg transition-all duration-300;
+}
+
+.mud-dark-theme .global-button {
+  @apply bg-[var(--secondary-color)];
+}
+
+.global-button:hover {
+  @apply bg-[var(--primary-hover)] transform scale-105;
+}
+
+.mud-dark-theme .global-button:hover {
+  @apply bg-[var(--secondary-hover)];
+}
+
+/* App-specific styles */
+.app-container {
+  @apply flex flex-col min-h-screen;
+}
+
+.main-content {
+  @apply flex-1;
+}

@@ -1,0 +1,193 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Анимации */
+@keyframes registerFadeIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes registerPulse {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.03); }
+    100% { transform: scale(1); }
+}
+
+@keyframes registerHoverGlow {
+    0% { box-shadow: 0 0 5px rgba(75, 0, 130, 0.3); }
+    50% { box-shadow: 0 0 15px rgba(75, 0, 130, 0.5); }
+    100% { box-shadow: 0 0 5px rgba(75, 0, 130, 0.3); }
+}
+
+/* Основной контейнер */
+.register-container {
+    @apply flex items-center justify-center min-h-screen;
+    background: linear-gradient(135deg, #f5f5fa, #e6e6fa);
+}
+
+.mud-dark-theme .register-container {
+    background: linear-gradient(135deg, #1a1a2e, #2e1a47);
+}
+
+/* Карточка регистрации */
+.register-card {
+    @apply p-8 rounded-xl bg-white shadow-lg w-full max-w-md mx-4;
+    animation: registerFadeIn 0.6s ease-out;
+}
+
+.mud-dark-theme .register-card {
+    @apply bg-gray-700;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
+}
+
+/* Социальные кнопки */
+.register-social-buttons {
+    @apply flex flex-col gap-3 mb-6;
+}
+
+.register-social-button {
+    @apply w-full px-6 py-3 rounded-lg text-white text-base font-sans font-semibold transition-all flex items-center justify-center shadow-md cursor-pointer;
+}
+
+.register-google-text {
+    @apply flex items-center justify-center w-full;
+}
+
+.register-google {
+    @apply bg-noble-purple;
+}
+
+.register-google:hover {
+    background: #6a0dad;
+    transform: scale(1.05);
+    box-shadow: 0 4px 12px rgba(75, 0, 130, 0.3);
+    animation: registerPulse 1.5s infinite, registerHoverGlow 1.5s infinite;
+}
+
+.register-facebook {
+    @apply bg-noble-purple;
+}
+
+.register-facebook:hover {
+    background: #6a0dad;
+    transform: scale(1.05);
+    box-shadow: 0 4px 12px rgba(75, 0, 130, 0.3);
+    animation: registerPulse 1.5s infinite, registerHoverGlow 1.5s infinite;
+}
+
+.register-vk {
+    @apply bg-noble-purple;
+}
+
+.register-vk:hover {
+    background: #6a0dad;
+    transform: scale(1.05);
+    box-shadow: 0 4px 12px rgba(75, 0, 130, 0.3);
+    animation: registerPulse 1.5s infinite, registerHoverGlow 1.5s infinite;
+}
+
+/* Разделитель */
+.register-divider {
+    @apply relative text-center my-4;
+}
+
+.register-divider span {
+    @apply bg-white px-4 text-gray-600 font-sans text-sm;
+}
+
+.mud-dark-theme .register-divider span {
+    @apply bg-gray-700 text-gray-300;
+}
+
+.register-divider::before {
+    content: '';
+    @apply absolute top-1/2 left-0 right-0 h-px bg-gray-300;
+}
+
+.mud-dark-theme .register-divider::before {
+    @apply bg-gray-500;
+}
+
+/* Форма */
+.register-form {
+    @apply space-y-6;
+}
+
+.register-field {
+    @apply relative;
+}
+
+.register-input {
+    @apply w-full p-3 border-2 rounded-lg text-base font-sans transition-all bg-white shadow-sm;
+    border-color: var(--border-light);
+}
+
+.register-input:focus {
+    border-color: #4b0082;
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(75, 0, 130, 0.2);
+}
+
+.mud-dark-theme .register-input {
+    @apply bg-gray-600 text-white;
+    border-color: var(--border-dark);
+}
+
+.register-input-error {
+    border-color: #ef4444;
+}
+
+.register-error {
+    @apply text-sm text-red-500 mt-1 block font-sans;
+}
+
+.register-button {
+    @apply w-full px-6 py-3 bg-gradient-to-r from-noble-purple to-noble-purple-light text-white rounded-lg text-lg font-sans font-semibold transition-all shadow-md;
+}
+
+.register-button:hover {
+    background: linear-gradient(90deg, #6a0dad, #9b4dca);
+    transform: scale(1.05);
+    box-shadow: 0 4px 12px rgba(75, 0, 130, 0.3);
+    animation: registerHoverGlow 1.5s infinite;
+}
+
+.register-button:disabled {
+    @apply opacity-50 cursor-not-allowed shadow-none;
+}
+
+.register-link {
+    @apply text-center mt-4 text-gray-600 font-sans;
+}
+
+.mud-dark-theme .register-link {
+    @apply text-gray-300;
+}
+
+.register-link-text {
+    @apply text-noble-purple font-sans font-medium hover:underline;
+}
+
+.mud-dark-theme .register-link-text {
+    @apply text-noble-purple-light;
+}
+
+/* Адаптивность */
+@media (max-width: 640px) {
+    .register-card {
+        @apply p-6;
+    }
+    .register-title {
+        @apply text-2xl;
+    }
+    .register-social-button {
+        @apply px-4 py-2 text-sm;
+    }
+    .register-input {
+        @apply p-2 text-sm;
+    }
+    .register-button {
+        @apply px-4 py-2 text-base;
+    }
+}

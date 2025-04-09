@@ -1,0 +1,408 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Анимации */
+@keyframes fadeInUp {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes slideInLeft {
+    from { transform: translateX(-20%); opacity: 0; }
+    to { transform: translateX(0); opacity: 1; }
+}
+
+@keyframes slideInRight {
+    from { opacity: 0; transform: translateX(20%); }
+    to { transform: translateX(0); opacity: 1; }
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+/* Основной контейнер */
+#messages {
+    @apply flex flex-col min-h-screen;
+}
+
+#messages-main {
+    @apply flex-1;
+}
+
+/* Заголовок */
+#messages-header {
+    @apply py-16 bg-gradient-to-b from-noble-purple/10 to-background-light;
+}
+
+.mud-dark-theme #messages-header {
+    @apply bg-gradient-to-b from-noble-purple/20 to-background-dark;
+}
+
+#messages-title {
+    @apply text-4xl sm:text-5xl lg:text-6xl font-extrabold text-gray-800 text-center;
+    animation: fadeInUp 1s ease-out;
+}
+
+.mud-dark-theme #messages-title {
+    @apply text-white;
+}
+
+#messages-subtitle {
+    @apply text-xl sm:text-2xl text-gray-600 mt-4 text-center;
+    animation: fadeInUp 1s ease-out 0.2s forwards;
+    opacity: 0;
+}
+
+.mud-dark-theme #messages-subtitle {
+    @apply text-gray-300;
+}
+
+#messages-search {
+    @apply mt-8 flex justify-center max-w-md mx-auto;
+    animation: fadeInUp 1s ease-out 0.4s forwards;
+    opacity: 0;
+}
+
+#messages-search-input {
+    @apply flex-1 p-3 border-2 rounded-l-lg text-base transition-colors bg-white;
+    border-color: var(--border-light);
+}
+
+#messages-search-input:focus {
+    border-color: var(--primary-color);
+    outline: none;
+}
+
+.mud-dark-theme #messages-search-input {
+    @apply bg-gray-600 text-white;
+    border-color: var(--border-dark);
+}
+
+#messages-search-button {
+    @apply px-4 py-2 bg-noble-purple text-white rounded-r-lg transition-all duration-300;
+}
+
+#messages-search-button:hover {
+    @apply bg-noble-purple-hover;
+}
+
+/* Основной контент */
+#messages-content {
+    @apply py-16;
+    background: linear-gradient(to bottom, #fff, #f9f9f9);
+}
+
+.mud-dark-theme #messages-content {
+    background: linear-gradient(to bottom, #222, #2c2c38);
+}
+
+/* Список чатов */
+#messages-chats {
+    @apply lg:w-1/3 bg-white rounded-xl shadow-md overflow-hidden;
+}
+
+.mud-dark-theme #messages-chats {
+    @apply bg-gray-700;
+}
+
+#messages-chats-list {
+    @apply max-h-[70vh] overflow-y-auto;
+}
+
+#messages-chat {
+    @apply flex items-center p-4 border-b border-gray-200 cursor-pointer transition-all duration-300;
+}
+
+.mud-dark-theme #messages-chat {
+    @apply border-gray-600;
+}
+
+#messages-chat:hover {
+    @apply bg-gray-100;
+}
+
+.mud-dark-theme #messages-chat:hover {
+    @apply bg-gray-600;
+}
+
+#messages-chat-active {
+    @apply bg-noble-purple/10;
+}
+
+.mud-dark-theme #messages-chat-active {
+    @apply bg-noble-purple/20;
+}
+
+#messages-chat-avatar {
+    @apply w-12 h-12 rounded-full object-cover;
+}
+
+#messages-chat-info {
+    @apply flex-1 ml-4;
+}
+
+#messages-chat-name {
+    @apply text-lg font-semibold text-gray-800;
+}
+
+.mud-dark-theme #messages-chat-name {
+    @apply text-white;
+}
+
+#messages-chat-last-message {
+    @apply text-sm text-gray-600 truncate;
+}
+
+.mud-dark-theme #messages-chat-last-message {
+    @apply text-gray-300;
+}
+
+#messages-chat-unread {
+    @apply px-2 py-1 bg-noble-purple text-white text-xs rounded-full;
+}
+
+.mud-dark-theme #messages-chat-unread {
+    @apply bg-noble-purple-light;
+}
+
+#messages-chats-empty {
+    @apply text-center py-12;
+}
+
+#messages-chats-empty-message {
+    @apply text-xl text-gray-600;
+}
+
+.mud-dark-theme #messages-chats-empty-message {
+    @apply text-gray-300;
+}
+
+/* Окно чата */
+#messages-chat-window {
+    @apply flex-1 flex flex-col bg-white rounded-xl shadow-md overflow-hidden;
+}
+
+.mud-dark-theme #messages-chat-window {
+    @apply bg-gray-700;
+}
+
+#messages-chat-header {
+    @apply flex items-center p-4 border-b border-gray-200;
+}
+
+.mud-dark-theme #messages-chat-header {
+    @apply border-gray-600;
+}
+
+#messages-chat-header-avatar {
+    @apply w-10 h-10 rounded-full object-cover;
+}
+
+#messages-chat-header-name {
+    @apply ml-4 text-lg font-semibold text-gray-800;
+}
+
+.mud-dark-theme #messages-chat-header-name {
+    @apply text-white;
+}
+
+#messages-chat-messages {
+    @apply flex-1 p-4 overflow-y-auto max-h-[60vh];
+}
+
+#messages-message {
+    @apply mb-4;
+}
+
+#messages-message-sent {
+    @apply flex justify-end;
+}
+
+#messages-message-received {
+    @apply flex justify-start;
+}
+
+#messages-message-content {
+    @apply max-w-xs p-3 rounded-lg;
+}
+
+#messages-message-sent .messages-message-content {
+    @apply bg-noble-purple text-white rounded-br-none;
+}
+
+#messages-message-received .messages-message-content {
+    @apply bg-gray-200 text-gray-800 rounded-bl-none;
+}
+
+.mud-dark-theme #messages-message-received .messages-message-content {
+    @apply bg-gray-600 text-white;
+}
+
+#messages-message-text {
+    @apply text-sm;
+}
+
+#messages-message-file {
+    @apply block mt-2 text-blue-500 underline;
+}
+
+.mud-dark-theme #messages-message-file {
+    @apply text-blue-300;
+}
+
+#messages-message-time {
+    @apply block text-xs text-gray-500 mt-1;
+}
+
+.mud-dark-theme #messages-message-time {
+    @apply text-gray-400;
+}
+
+#messages-chat-empty {
+    @apply flex-1 flex items-center justify-center;
+}
+
+#messages-chat-empty-message {
+    @apply text-xl text-gray-600;
+}
+
+.mud-dark-theme #messages-chat-empty-message {
+    @apply text-gray-300;
+}
+
+#messages-chat-input {
+    @apply flex items-center p-4 border-t border-gray-200;
+}
+
+.mud-dark-theme #messages-chat-input {
+    @apply border-gray-600;
+}
+
+#messages-emoji-button,
+#messages-file-button,
+#messages-send-button {
+    @apply p-2 text-noble-purple transition-all duration-300;
+}
+
+.mud-dark-theme #messages-emoji-button,
+.mud-dark-theme #messages-file-button,
+.mud-dark-theme #messages-send-button {
+    @apply text-noble-purple-light;
+}
+
+#messages-emoji-button:hover,
+#messages-file-button:hover,
+#messages-send-button:hover {
+    @apply text-noble-purple-hover transform scale-110;
+}
+
+.mud-dark-theme #messages-emoji-button:hover,
+.mud-dark-theme #messages-file-button:hover,
+.mud-dark-theme #messages-send-button:hover {
+    @apply text-noble-purple-light-hover;
+}
+
+#messages-emoji-picker {
+    @apply absolute bottom-16 left-4 bg-white rounded-lg shadow-lg p-2 flex gap-2 flex-wrap;
+}
+
+.mud-dark-theme #messages-emoji-picker {
+    @apply bg-gray-600;
+}
+
+#messages-emoji-picker .messages-emoji {
+    @apply text-2xl cursor-pointer hover:scale-125 transition-transform duration-300;
+}
+
+#messages-input {
+    @apply flex-1 p-3 border-2 rounded-lg text-base transition-colors bg-white mx-2;
+    border-color: var(--border-light);
+}
+
+#messages-input:focus {
+    border-color: var(--primary-color);
+    outline: none;
+}
+
+.mud-dark-theme #messages-input {
+    @apply bg-gray-600 text-white;
+    border-color: var(--border-dark);
+}
+
+/* Адаптивность */
+@media (max-width: 1024px) {
+    #messages-header {
+        @apply py-12;
+    }
+    #messages-title {
+        @apply text-4xl;
+    }
+    #messages-content {
+        @apply py-12;
+    }
+    #messages-chats {
+        @apply lg:w-full;
+    }
+    #messages-chats-list {
+        @apply max-h-96;
+    }
+}
+
+@media (max-width: 640px) {
+    #messages-header {
+        @apply py-8;
+    }
+    #messages-title {
+        @apply text-3xl;
+    }
+    #messages-subtitle {
+        @apply text-lg;
+    }
+    #messages-search-input {
+        @apply p-2 text-sm;
+    }
+    #messages-search-button {
+        @apply px-3 py-1;
+    }
+    #messages-chat {
+        @apply p-3;
+    }
+    #messages-chat-avatar {
+        @apply w-10 h-10;
+    }
+    #messages-chat-name {
+        @apply text-base;
+    }
+    #messages-chat-last-message {
+        @apply text-xs;
+    }
+    #messages-chat-unread {
+        @apply px-1.5 py-0.5 text-xs;
+    }
+    #messages-chat-messages {
+        @apply p-2;
+    }
+    #messages-message-content {
+        @apply max-w-[70%];
+    }
+    #messages-message-text {
+        @apply text-xs;
+    }
+    #messages-message-time {
+        @apply text-[10px];
+    }
+    #messages-chat-input {
+        @apply p-2;
+    }
+    #messages-emoji-button,
+    #messages-file-button,
+    #messages-send-button {
+        @apply p-1;
+    }
+    #messages-input {
+        @apply p-2 text-sm;
+    }
+}

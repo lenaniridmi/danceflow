@@ -1,0 +1,95 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Основной контейнер */
+#video-player {
+    @apply p-8 max-w-4xl mx-auto;
+}
+
+/* Видео-элемент */
+#video-player-element {
+    @apply w-full rounded-lg shadow-lg;
+}
+
+/* Элементы управления */
+#video-player-controls {
+    @apply mt-4 flex gap-4 flex-wrap;
+}
+
+#video-player-speed-select {
+    @apply p-2 border-2 border-noble-purple rounded-lg bg-white text-noble-purple transition-all duration-300;
+}
+
+.mud-dark-theme #video-player-speed-select {
+    @apply bg-gray-600 text-noble-purple-light border-noble-purple-light;
+}
+
+#video-player-speed-select:hover {
+    @apply border-noble-purple-hover;
+}
+
+.mud-dark-theme #video-player-speed-select:hover {
+    @apply border-noble-purple-light-hover;
+}
+
+#video-player-loop-button,
+#video-player-add-note {
+    @apply px-4 py-2 bg-gradient-to-r from-noble-purple to-noble-purple-light text-white rounded-lg transition-all duration-300;
+    box-shadow: 0 4px 15px rgba(var(--primary-rgb), 0.2);
+}
+
+#video-player-loop-button:hover,
+#video-player-add-note:hover {
+    @apply transform scale-105;
+    background: linear-gradient(90deg, var(--primary-hover), var(--secondary-hover));
+    box-shadow: 0 6px 20px rgba(var(--primary-rgb), 0.3);
+}
+
+/* Заметки */
+#video-player-notes {
+    @apply mt-4;
+}
+
+#video-player-notes-title {
+    @apply text-xl font-bold text-noble-purple mb-4;
+}
+
+.mud-dark-theme #video-player-notes-title {
+    @apply text-noble-purple-light;
+}
+
+#video-player-notes-list {
+    @apply list-none;
+}
+
+#video-player-note-item {
+    @apply p-2 border-b border-noble-purple;
+}
+
+.mud-dark-theme #video-player-note-item {
+    @apply border-noble-purple-light;
+}
+
+#video-player-note-timestamp {
+    @apply text-noble-purple cursor-pointer hover:underline;
+}
+
+.mud-dark-theme #video-player-note-timestamp {
+    @apply text-noble-purple-light;
+}
+
+/* Адаптивность */
+@media (max-width: 640px) {
+    #video-player {
+        @apply p-4;
+    }
+    #video-player-controls {
+        @apply flex-col gap-2;
+    }
+    #video-player-speed-select,
+    #video-player-loop-button,
+    #video-player-add-note {
+        @apply w-full;
+    }
+}

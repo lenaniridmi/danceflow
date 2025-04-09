@@ -1,0 +1,296 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Анимации */
+@keyframes fadeInUp {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+/* Основной контейнер */
+#reviews {
+    @apply flex flex-col min-h-screen;
+}
+
+#reviews-main {
+    @apply flex-1;
+}
+
+/* Заголовок и форма */
+#reviews-header {
+    @apply py-16 bg-gradient-to-b from-noble-purple/10 to-background-light;
+}
+
+.mud-dark-theme #reviews-header {
+    @apply bg-gradient-to-b from-noble-purple/20 to-background-dark;
+}
+
+#reviews-title {
+    @apply text-4xl sm:text-5xl lg:text-6xl font-extrabold text-gray-800 text-center;
+    animation: fadeInUp 1s ease-out;
+}
+
+.mud-dark-theme #reviews-title {
+    @apply text-white;
+}
+
+#reviews-subtitle {
+    @apply text-xl sm:text-2xl text-gray-600 mt-4 text-center;
+    animation: fadeInUp 1s ease-out 0.2s forwards;
+    opacity: 0;
+}
+
+.mud-dark-theme #reviews-subtitle {
+    @apply text-gray-300;
+}
+
+#reviews-add-form {
+    @apply mt-8 max-w-lg mx-auto p-6 rounded-xl bg-white shadow-md space-y-4;
+    animation: fadeInUp 1s ease-out 0.4s forwards;
+    opacity: 0;
+}
+
+.mud-dark-theme #reviews-add-form {
+    @apply bg-gray-700;
+}
+
+#reviews-add-title {
+    @apply text-2xl font-semibold text-gray-800 text-center;
+}
+
+.mud-dark-theme #reviews-add-title {
+    @apply text-white;
+}
+
+#reviews-add-rating {
+    @apply w-full p-3 border-2 rounded-lg font-medium cursor-pointer transition-all text-base;
+    border-color: var(--border-light);
+    background: var(--card-bg-light);
+    color: var(--text-light);
+}
+
+#reviews-add-rating:hover {
+    border-color: var(--primary-color);
+    background: #f9f9f9;
+}
+
+.mud-dark-theme #reviews-add-rating {
+    background: var(--card-bg-dark);
+    color: var(--text-dark);
+    border-color: var(--border-dark);
+}
+
+.mud-dark-theme #reviews-add-rating:hover {
+    border-color: var(--primary-hover);
+    background: #333;
+}
+
+#reviews-add-text {
+    @apply w-full p-3 border-2 rounded-lg text-base transition-colors bg-white h-32 resize-none;
+    border-color: var(--border-light);
+}
+
+#reviews-add-text:focus {
+    border-color: var(--primary-color);
+    outline: none;
+}
+
+.mud-dark-theme #reviews-add-text {
+    @apply bg-gray-600 text-white;
+    border-color: var(--border-dark);
+}
+
+#reviews-add-button {
+    @apply w-full px-4 py-2 bg-gradient-to-r from-noble-purple to-noble-purple-light text-white rounded-lg text-center transition-all duration-300;
+    box-shadow: 0 4px 15px rgba(var(--primary-rgb), 0.2);
+}
+
+#reviews-add-button:hover {
+    @apply transform scale-105;
+    background: linear-gradient(90deg, var(--primary-hover), var(--secondary-hover));
+    box-shadow: 0 6px 20px rgba(var(--primary-rgb), 0.3);
+}
+
+#reviews-filter {
+    @apply mt-8 flex justify-center max-w-md mx-auto;
+    animation: fadeInUp 1s ease-out 0.6s forwards;
+    opacity: 0;
+}
+
+#reviews-filter-select {
+    @apply p-3 border-2 rounded-lg font-medium cursor-pointer transition-all text-base;
+    border-color: var(--border-light);
+    background: var(--card-bg-light);
+    color: var(--text-light);
+}
+
+#reviews-filter-select:hover {
+    border-color: var(--primary-color);
+    background: #f9f9f9;
+}
+
+.mud-dark-theme #reviews-filter-select {
+    background: var(--card-bg-dark);
+    color: var(--text-dark);
+    border-color: var(--border-dark);
+}
+
+.mud-dark-theme #reviews-filter-select:hover {
+    border-color: var(--primary-hover);
+    background: #333;
+}
+
+/* Список отзывов */
+#reviews-list {
+    @apply py-16;
+    background: linear-gradient(to bottom, #fff, #f9f9f9);
+}
+
+.mud-dark-theme #reviews-list {
+    background: linear-gradient(to bottom, #222, #2c2c38);
+}
+
+#reviews-grid {
+    @apply grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8;
+}
+
+#reviews-card {
+    @apply p-6 rounded-xl bg-white shadow-md transition-all space-y-4;
+}
+
+.mud-dark-theme #reviews-card {
+    @apply bg-gray-700;
+}
+
+#reviews-card:hover {
+    @apply transform translate-y-[-10px];
+    box-shadow: 0 20px 40px rgba(75, 0, 130, 0.3);
+}
+
+#reviews-card-header {
+    @apply flex items-center space-x-4;
+}
+
+#reviews-card-avatar {
+    @apply w-12 h-12 rounded-full object-cover;
+}
+
+#reviews-card-info {
+    @apply flex-1;
+}
+
+#reviews-card-author {
+    @apply text-lg font-semibold text-gray-800;
+}
+
+.mud-dark-theme #reviews-card-author {
+    @apply text-white;
+}
+
+#reviews-card-rating {
+    @apply flex space-x-1;
+}
+
+#reviews-card-rating i {
+    @apply text-sm;
+}
+
+#reviews-card-text {
+    @apply text-base text-gray-600;
+}
+
+.mud-dark-theme #reviews-card-text {
+    @apply text-gray-300;
+}
+
+#reviews-card-actions {
+    @apply flex space-x-4;
+}
+
+#reviews-card-like,
+#reviews-card-dislike {
+    @apply flex items-center space-x-2 text-gray-600 transition-all duration-300;
+}
+
+.mud-dark-theme #reviews-card-like,
+.mud-dark-theme #reviews-card-dislike {
+    @apply text-gray-300;
+}
+
+#reviews-card-like:hover,
+#reviews-card-dislike:hover {
+    @apply transform scale-110;
+}
+
+#reviews-card.animate-fade-in-up {
+    animation: fadeInUp 0.6s ease-out forwards;
+}
+
+#reviews-empty {
+    @apply text-center py-12;
+}
+
+#reviews-empty-message {
+    @apply text-xl text-gray-600;
+}
+
+.mud-dark-theme #reviews-empty-message {
+    @apply text-gray-300;
+}
+
+/* Адаптивность */
+@media (max-width: 1024px) {
+    #reviews-header {
+        @apply py-12;
+    }
+    #reviews-title {
+        @apply text-4xl;
+    }
+    #reviews-list {
+        @apply py-12;
+    }
+}
+
+@media (max-width: 640px) {
+    #reviews-header {
+        @apply py-8;
+    }
+    #reviews-title {
+        @apply text-3xl;
+    }
+    #reviews-subtitle {
+        @apply text-lg;
+    }
+    #reviews-add-form {
+        @apply p-4;
+    }
+    #reviews-add-title {
+        @apply text-xl;
+    }
+    #reviews-add-rating,
+    #reviews-add-text,
+    #reviews-filter-select {
+        @apply p-2 text-sm;
+    }
+    #reviews-add-text {
+        @apply h-24;
+    }
+    #reviews-card {
+        @apply p-4;
+    }
+    #reviews-card-avatar {
+        @apply w-10 h-10;
+    }
+    #reviews-card-author {
+        @apply text-base;
+    }
+    #reviews-card-text {
+        @apply text-sm;
+    }
+}

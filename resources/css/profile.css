@@ -1,0 +1,379 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Анимации */
+@keyframes fadeInUp {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes slideInLeft {
+    from { transform: translateX(-20%); opacity: 0; }
+    to { transform: translateX(0); opacity: 1; }
+}
+
+@keyframes slideInUp {
+    from { transform: translateY(20px); opacity: 0; }
+    to { transform: translateY(0); opacity: 1; }
+}
+
+@keyframes slideInRight {
+    from { opacity: 0; transform: translateX(20%); }
+    to { transform: translateX(0); opacity: 1; }
+}
+
+@keyframes pulse {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.05); }
+    100% { transform: scale(1); }
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+/* Основной контейнер */
+#profile {
+    @apply flex flex-col min-h-screen;
+}
+
+#profile-main {
+    @apply flex-1;
+}
+
+/* Заголовок */
+#profile-header {
+    @apply py-16 bg-gradient-to-b from-noble-purple/10 to-background-light;
+}
+
+.mud-dark-theme #profile-header {
+    @apply bg-gradient-to-b from-noble-purple/20 to-background-dark;
+}
+
+#profile-title {
+    @apply text-4xl sm:text-5xl lg:text-6xl font-extrabold text-gray-800 text-center;
+    animation: fadeInUp 1s ease-out;
+}
+
+.mud-dark-theme #profile-title {
+    @apply text-white;
+}
+
+#profile-subtitle {
+    @apply text-xl sm:text-2xl text-gray-600 mt-4 text-center;
+    animation: fadeInUp 1s ease-out 0.2s forwards;
+    opacity: 0;
+}
+
+.mud-dark-theme #profile-subtitle {
+    @apply text-gray-300;
+}
+
+/* Общие стили для секций */
+.profile-section {
+    @apply py-12;
+}
+
+.profile-card {
+    @apply max-w-3xl mx-auto p-6 rounded-xl bg-white shadow-md space-y-6;
+}
+
+.mud-dark-theme .profile-card {
+    @apply bg-gray-700;
+}
+
+.profile-card-title {
+    @apply text-2xl font-semibold text-gray-800 text-center;
+}
+
+.mud-dark-theme .profile-card-title {
+    @apply text-white;
+}
+
+.profile-button {
+    @apply w-full px-4 py-2 bg-gradient-to-r from-noble-purple to-noble-purple-light text-white rounded-lg text-center transition-all duration-300;
+    box-shadow: 0 4px 15px rgba(var(--primary-rgb), 0.2);
+}
+
+.profile-button:hover {
+    @apply transform scale-105;
+    background: linear-gradient(90deg, var(--primary-hover), var(--secondary-hover));
+    box-shadow: 0 6px 20px rgba(var(--primary-rgb), 0.3);
+}
+
+.profile-button.animate-pulse {
+    animation: pulse 1.5s infinite;
+}
+
+/* Личная информация */
+#profile-info-details {
+    @apply flex items-center space-x-6;
+}
+
+#profile-avatar {
+    @apply w-24 h-24 rounded-full object-cover shadow-md;
+}
+
+#profile-details {
+    @apply flex-1 space-y-2;
+}
+
+#profile-details p {
+    @apply text-base text-gray-600;
+}
+
+.mud-dark-theme #profile-details p {
+    @apply text-gray-300;
+}
+
+#profile-details strong {
+    @apply text-gray-800 font-semibold;
+}
+
+.mud-dark-theme #profile-details strong {
+    @apply text-white;
+}
+
+/* Танцевальная статистика */
+#profile-stats-grid {
+    @apply grid grid-cols-1 sm:grid-cols-3 gap-6;
+}
+
+.profile-stats-item {
+    @apply p-4 rounded-lg bg-gray-50 text-center space-y-2;
+}
+
+.mud-dark-theme .profile-stats-item {
+    @apply bg-gray-600;
+}
+
+.profile-stats-item:hover {
+    @apply transform translate-y-[-5px];
+    box-shadow: 0 10px 20px rgba(75, 0, 130, 0.2);
+}
+
+.profile-stats-title {
+    @apply text-lg font-semibold text-gray-800;
+}
+
+.mud-dark-theme .profile-stats-title {
+    @apply text-white;
+}
+
+.profile-stats-value {
+    @apply text-2xl font-bold text-noble-purple;
+}
+
+.mud-dark-theme .profile-stats-value {
+    @apply text-noble-purple-light;
+}
+
+#profile-stats-courses.animate-slide-in-left {
+    animation: slideInLeft 0.6s ease-out forwards;
+}
+
+#profile-stats-lessons.animate-slide-in-up {
+    animation: slideInUp 0.6s ease-out forwards;
+}
+
+#profile-stats-hours.animate-slide-in-right {
+    animation: slideInRight 0.6s ease-out forwards;
+}
+
+/* Любимые стили танцев */
+#profile-favorite-styles-list {
+    @apply flex flex-wrap gap-4;
+}
+
+.profile-favorite-style {
+    @apply flex items-center space-x-2 px-4 py-2 bg-gray-100 rounded-full;
+}
+
+.mud-dark-theme .profile-favorite-style {
+    @apply bg-gray-600;
+}
+
+.profile-favorite-style span {
+    @apply text-gray-800;
+}
+
+.mud-dark-theme .profile-favorite-style span {
+    @apply text-white;
+}
+
+.profile-favorite-style-remove {
+    @apply text-noble-purple hover:text-red-500 transition-all duration-300;
+}
+
+.mud-dark-theme .profile-favorite-style-remove {
+    @apply text-noble-purple-light hover:text-red-400;
+}
+
+#profile-favorite-styles-add {
+    @apply flex items-center space-x-4 mt-4;
+}
+
+#profile-favorite-styles-select {
+    @apply flex-1 p-3 border-2 rounded-lg font-medium cursor-pointer transition-all text-base;
+    border-color: var(--border-light);
+    background: var(--card-bg-light);
+    color: var(--text-light);
+}
+
+#profile-favorite-styles-select:hover {
+    border-color: var(--primary-color);
+    background: #f9f9f9;
+}
+
+.mud-dark-theme #profile-favorite-styles-select {
+    background: var(--card-bg-dark);
+    color: var(--text-dark);
+    border-color: var(--border-dark);
+}
+
+.mud-dark-theme #profile-favorite-styles-select:hover {
+    border-color: var(--primary-hover);
+    background: #333;
+}
+
+/* Настройки аккаунта */
+.profile-settings-content {
+    @apply space-y-4;
+}
+
+.profile-setting-label {
+    @apply text-lg font-medium text-gray-800;
+}
+
+.mud-dark-theme .profile-setting-label {
+    @apply text-white;
+}
+
+.profile-select {
+    @apply w-full p-3 border-2 rounded-lg font-medium cursor-pointer transition-all text-base;
+    border-color: var(--border-light);
+    background: var(--card-bg-light);
+    color: var(--text-light);
+}
+
+.profile-select:hover {
+    border-color: var(--primary-color);
+    background: #f9f9f9;
+}
+
+.mud-dark-theme .profile-select {
+    background: var(--card-bg-dark);
+    color: var(--text-dark);
+    border-color: var(--border-dark);
+}
+
+.mud-dark-theme .profile-select:hover {
+    border-color: var(--primary-hover);
+    background: #333;
+}
+
+.profile-checkbox {
+    @apply h-5 w-5 text-noble-purple rounded focus:ring-noble-purple;
+}
+
+.mud-dark-theme .profile-checkbox {
+    @apply text-noble-purple-light focus:ring-noble-purple-light;
+}
+
+#profile-settings-notifications {
+    @apply space-y-2;
+}
+
+/* Конфиденциальность */
+#profile-privacy-content {
+    @apply space-y-4;
+}
+
+/* Действия с аккаунтом */
+.profile-action-button {
+    @apply w-full px-4 py-2 bg-gray-200 text-gray-800 rounded-lg text-center transition-all duration-300;
+}
+
+.mud-dark-theme .profile-action-button {
+    @apply bg-gray-600 text-white;
+}
+
+.profile-action-button:hover {
+    @apply bg-gray-300;
+}
+
+.mud-dark-theme .profile-action-button:hover {
+    @apply bg-gray-500;
+}
+
+.profile-danger {
+    @apply bg-red-500 text-white;
+}
+
+.mud-dark-theme .profile-danger {
+    @apply bg-red-600;
+}
+
+.profile-danger:hover {
+    @apply bg-red-600;
+}
+
+.mud-dark-theme .profile-danger:hover {
+    @apply bg-red-700;
+}
+
+/* Адаптивность */
+@media (max-width: 1024px) {
+    #profile-header {
+        @apply py-12;
+    }
+    #profile-title {
+        @apply text-4xl;
+    }
+    .profile-section {
+        @apply py-8;
+    }
+    #profile-stats-grid {
+        @apply grid-cols-1;
+    }
+}
+
+@media (max-width: 640px) {
+    #profile-header {
+        @apply py-8;
+    }
+    #profile-title {
+        @apply text-3xl;
+    }
+    #profile-subtitle {
+        @apply text-lg;
+    }
+    .profile-card {
+        @apply p-4;
+    }
+    .profile-card-title {
+        @apply text-xl;
+    }
+    #profile-info-details {
+        @apply flex-col items-center space-x-0 space-y-4;
+    }
+    #profile-avatar {
+        @apply w-20 h-20;
+    }
+    #profile-details p {
+        @apply text-sm;
+    }
+    #profile-favorite-styles-add {
+        @apply flex-col space-x-0 space-y-4;
+    }
+    .profile-setting-label {
+        @apply text-base;
+    }
+    .profile-select,
+    .profile-button,
+    .profile-action-button {
+        @apply p-2 text-sm;
+    }
+}
