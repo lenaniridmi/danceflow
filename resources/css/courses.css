@@ -9,29 +9,34 @@
 }
 
 @keyframes slideInLeft {
-    from { transform: translateX(-20%); opacity: 0; }
-    to { transform: translateX(0); opacity: 1; }
-}
-
-@keyframes slideInUp {
-    from { transform: translateY(20px); opacity: 0; }
-    to { transform: translateY(0); opacity: 1; }
-}
-
-@keyframes slideInRight {
-    from { opacity: 0; transform: translateX(20%); }
+    from { opacity: 0; transform: translateX(-20px); }
     to { opacity: 1; transform: translateX(0); }
 }
 
-@keyframes pulse {
-    0% { transform: scale(1); }
-    50% { transform: scale(1.05); }
-    100% { transform: scale(1); }
+@keyframes slideInRight {
+    from { opacity: 0; transform: translateX(20px); }
+    to { opacity: 1; transform: translateX(0); }
 }
 
-@keyframes fadeIn {
-    from { opacity: 0; }
-    to { opacity: 1; }
+@keyframes slideInUp {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.animate-fade-in-up {
+    animation: fadeInUp 0.6s ease-out forwards;
+}
+
+.animate-slide-in-left {
+    animation: slideInLeft 0.6s ease-out forwards;
+}
+
+.animate-slide-in-right {
+    animation: slideInRight 0.6s ease-out forwards;
+}
+
+.animate-slide-in-up {
+    animation: slideInUp 0.6s ease-out forwards;
 }
 
 /* Основной контейнер */
@@ -43,7 +48,7 @@
     @apply flex-1;
 }
 
-/* Заголовок и фильтр */
+/* Заголовок */
 #courses-header {
     @apply py-16 bg-gradient-to-b from-noble-purple/10 to-background-light;
 }
@@ -54,7 +59,6 @@
 
 #courses-title {
     @apply text-4xl sm:text-5xl lg:text-6xl font-extrabold text-gray-800 text-center;
-    animation: fadeInUp 1s ease-out;
 }
 
 .mud-dark-theme #courses-title {
@@ -63,41 +67,25 @@
 
 #courses-subtitle {
     @apply text-xl sm:text-2xl text-gray-600 mt-4 text-center;
-    animation: fadeInUp 1s ease-out 0.2s forwards;
-    opacity: 0;
 }
 
 .mud-dark-theme #courses-subtitle {
     @apply text-gray-300;
 }
 
+/* Фильтр */
 #courses-filter {
-    @apply mt-8 flex justify-center;
-    animation: fadeInUp 1s ease-out 0.4s forwards;
-    opacity: 0;
+    @apply mt-6 max-w-md mx-auto;
 }
 
 #courses-filter-select {
-    @apply p-3 border-2 rounded-lg font-medium cursor-pointer transition-all text-base;
-    border-color: var(--border-light);
-    background: var(--card-bg-light);
-    color: var(--text-light);
-}
-
-#courses-filter-select:hover {
-    border-color: var(--primary-color);
-    background: #f9f9f9;
+    @apply w-full p-3 border-2 rounded-lg text-base;
+    border-color: #d1d5db;
 }
 
 .mud-dark-theme #courses-filter-select {
-    background: var(--card-bg-dark);
-    color: var(--text-dark);
-    border-color: var(--border-dark);
-}
-
-.mud-dark-theme #courses-filter-select:hover {
-    border-color: var(--primary-hover);
-    background: #333;
+    @apply bg-gray-700 text-white;
+    border-color: #4b5563;
 }
 
 /* Список курсов */
@@ -111,24 +99,24 @@
 }
 
 #courses-grid {
-    @apply grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8;
+    @apply grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6;
 }
 
 #courses-card {
-    @apply p-6 rounded-xl bg-white shadow-md transition-all space-y-4;
+    @apply bg-white rounded-xl shadow-md p-6 transition-all duration-300;
 }
 
 .mud-dark-theme #courses-card {
-    @apply bg-gray-700;
+    @apply bg-gray-800;
 }
 
 #courses-card:hover {
-    @apply transform translate-y-[-10px];
-    box-shadow: 0 20px 40px rgba(75, 0, 130, 0.3);
+    @apply transform scale-105;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
 }
 
 #courses-card-image {
-    @apply w-full h-48 object-cover rounded-lg;
+    @apply w-full h-48 object-cover rounded-lg mb-4;
 }
 
 #courses-card-title {
@@ -140,46 +128,45 @@
 }
 
 #courses-card-desc {
-    @apply text-base text-gray-600;
+    @apply text-gray-600 mt-2;
 }
 
 .mud-dark-theme #courses-card-desc {
     @apply text-gray-300;
 }
 
+#courses-card-level,
+#courses-card-teacher {
+    @apply text-sm text-gray-600 mt-1;
+}
+
+.mud-dark-theme #courses-card-level,
+.mud-dark-theme #courses-card-teacher {
+    @apply text-gray-300;
+}
+
 #courses-card-actions {
-    @apply flex justify-between items-center;
+    @apply flex items-center mt-4 space-x-4;
 }
 
 #courses-card-favorite {
-    @apply text-2xl text-noble-purple transition-all duration-300;
+    @apply text-gray-600;
 }
 
 .mud-dark-theme #courses-card-favorite {
-    @apply text-noble-purple-light;
+    @apply text-gray-300;
 }
 
 #courses-card-favorite:hover {
-    @apply text-noble-purple-hover transform scale-110;
-}
-
-.mud-dark-theme #courses-card-favorite:hover {
-    @apply text-noble-purple-light-hover;
+    @apply text-red-500;
 }
 
 #courses-card-link {
-    @apply px-4 py-2 bg-gradient-to-r from-noble-purple to-noble-purple-light text-white rounded-lg text-center transition-all duration-300;
-    box-shadow: 0 4px 15px rgba(var(--primary-rgb), 0.2);
+    @apply px-4 py-2 bg-noble-purple text-white rounded-lg text-sm font-semibold transition-all;
 }
 
 #courses-card-link:hover {
-    @apply transform scale-105;
-    background: linear-gradient(90deg, var(--primary-hover), var(--secondary-hover));
-    box-shadow: 0 6px 20px rgba(var(--primary-rgb), 0.3);
-}
-
-#courses-card.animate-fade-in-up {
-    animation: fadeInUp 0.6s ease-out forwards;
+    @apply bg-noble-purple-hover transform scale-105;
 }
 
 #courses-empty {
@@ -194,22 +181,33 @@
     @apply text-gray-300;
 }
 
+/* Пагинация */
+.pagination {
+    @apply mt-8 flex justify-center space-x-2;
+}
+
+.pagination button {
+    @apply px-4 py-2 bg-gray-300 rounded-lg text-sm font-semibold transition-all;
+}
+
+.pagination button:hover:not(:disabled) {
+    @apply bg-gray-400;
+}
+
+.pagination span {
+    @apply px-4 py-2 text-sm font-semibold;
+}
+
 /* Адаптивность */
 @media (max-width: 1024px) {
-    #courses-header {
-        @apply py-12;
-    }
-    #courses-title {
-        @apply text-4xl;
-    }
-    #courses-list {
-        @apply py-12;
+    #courses-grid {
+        @apply grid-cols-1 md:grid-cols-2;
     }
 }
 
 @media (max-width: 640px) {
     #courses-header {
-        @apply py-8;
+        @apply py-12;
     }
     #courses-title {
         @apply text-3xl;
@@ -217,10 +215,24 @@
     #courses-subtitle {
         @apply text-lg;
     }
-    #courses-filter-select {
-        @apply w-full;
+    #courses-grid {
+        @apply grid-cols-1;
     }
     #courses-card {
         @apply p-4;
+    }
+    #courses-card-image {
+        @apply h-40;
+    }
+    #courses-card-title {
+        @apply text-lg;
+    }
+    #courses-card-desc,
+    #courses-card-level,
+    #courses-card-teacher {
+        @apply text-sm;
+    }
+    #courses-card-link {
+        @apply px-3 py-1 text-sm;
     }
 }

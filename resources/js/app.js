@@ -1,3 +1,5 @@
+import './bootstrap'; // Импортируем bootstrap.js первым
+
 import '../css/app.css';
 import '../css/header.css';
 import '../css/footer.css';
@@ -12,7 +14,7 @@ import '../css/progress.css';
 import '../css/reviews.css';
 import '../css/dashboard.css';
 import '../css/video-player.css';
-import '@fortawesome/fontawesome-free/css/all.css'; // Добавляем стили Font Awesome
+import '@fortawesome/fontawesome-free/css/all.css';
 
 import { createApp } from 'vue';
 import App from './components/App.vue';
@@ -24,6 +26,7 @@ const app = createApp(App);
 app.use(router);
 app.use(i18n);
 app.use(vue3GoogleLogin, {
-    clientId: 'YOUR_GOOGLE_CLIENT_ID'
+    clientId: '456217167788-52ae8hj3cesunje8daajjadd85r9mq87.apps.googleusercontent.com',
+    redirectUri: 'http://127.0.0.1:8000/api/auth/google/callback',
 });
 app.mount('#app');

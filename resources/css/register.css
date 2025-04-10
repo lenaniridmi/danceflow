@@ -34,11 +34,21 @@
 .register-card {
     @apply p-8 rounded-xl bg-white shadow-lg w-full max-w-md mx-4;
     animation: registerFadeIn 0.6s ease-out;
+    border: 1px solid #e5e7eb;
 }
 
 .mud-dark-theme .register-card {
-    @apply bg-gray-700;
+    @apply bg-gray-800 border-gray-700;
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
+}
+
+/* Заголовок */
+.register-title {
+    @apply text-3xl font-bold text-gray-800 text-center mb-6;
+}
+
+.mud-dark-theme .register-title {
+    @apply text-white;
 }
 
 /* Социальные кнопки */
@@ -55,36 +65,33 @@
 }
 
 .register-google {
-    @apply bg-noble-purple;
+    @apply bg-white text-gray-700 border border-gray-300;
 }
 
 .register-google:hover {
-    background: #6a0dad;
-    transform: scale(1.05);
-    box-shadow: 0 4px 12px rgba(75, 0, 130, 0.3);
-    animation: registerPulse 1.5s infinite, registerHoverGlow 1.5s infinite;
+    @apply bg-gray-100 transform scale-105;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    animation: registerPulse 1.5s infinite;
 }
 
-.register-facebook {
-    @apply bg-noble-purple;
+.register-yandex {
+    @apply bg-red-600;
 }
 
-.register-facebook:hover {
-    background: #6a0dad;
-    transform: scale(1.05);
-    box-shadow: 0 4px 12px rgba(75, 0, 130, 0.3);
-    animation: registerPulse 1.5s infinite, registerHoverGlow 1.5s infinite;
+.register-yandex:hover {
+    @apply bg-red-700 transform scale-105;
+    box-shadow: 0 4px 12px rgba(220, 38, 38, 0.3);
+    animation: registerPulse 1.5s infinite;
 }
 
-.register-vk {
-    @apply bg-noble-purple;
+.register-mailru {
+    @apply bg-blue-600;
 }
 
-.register-vk:hover {
-    background: #6a0dad;
-    transform: scale(1.05);
-    box-shadow: 0 4px 12px rgba(75, 0, 130, 0.3);
-    animation: registerPulse 1.5s infinite, registerHoverGlow 1.5s infinite;
+.register-mailru:hover {
+    @apply bg-blue-700 transform scale-105;
+    box-shadow: 0 4px 12px rgba(37, 99, 235, 0.3);
+    animation: registerPulse 1.5s infinite;
 }
 
 /* Разделитель */
@@ -97,7 +104,7 @@
 }
 
 .mud-dark-theme .register-divider span {
-    @apply bg-gray-700 text-gray-300;
+    @apply bg-gray-800 text-gray-300;
 }
 
 .register-divider::before {
@@ -120,7 +127,7 @@
 
 .register-input {
     @apply w-full p-3 border-2 rounded-lg text-base font-sans transition-all bg-white shadow-sm;
-    border-color: var(--border-light);
+    border-color: #d1d5db;
 }
 
 .register-input:focus {
@@ -130,8 +137,8 @@
 }
 
 .mud-dark-theme .register-input {
-    @apply bg-gray-600 text-white;
-    border-color: var(--border-dark);
+    @apply bg-gray-700 text-white;
+    border-color: #4b5563;
 }
 
 .register-input-error {

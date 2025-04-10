@@ -4,6 +4,7 @@ const routes = [
     { path: '/', name: 'home', component: () => import('../components/Home.vue') },
     { path: '/dashboard', name: 'dashboard', component: () => import('../components/DashboardPage.vue') },
     { path: '/courses', name: 'courses', component: () => import('../components/CoursesPage.vue') },
+    { path: '/course', name: 'course', component: () => import('../components/CoursePage.vue') },
     { path: '/progress', name: 'progress', component: () => import('../components/ProgressPage.vue') },
     { path: '/messages', name: 'messages', component: () => import('../components/MessagesPage.vue') },
     { path: '/favorites', name: 'favorites', component: () => import('../components/FavoritesPage.vue') },

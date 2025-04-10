@@ -2,7 +2,6 @@
 
 namespace App\Models;
 
-// Используем Authenticatable для сессионной аутентификации
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 
@@ -14,20 +13,20 @@ class User extends Authenticatable
     protected $primaryKey = 'id';
 
     protected $fillable = [
-        'email', 'password', 'name', 'role', 'language'
+        'email', 'password', 'name', 'role', 'language', 'avatar_url',
     ];
 
     protected $casts = [
-        'role' => 'string', // ENUM как строка
+        'role' => 'string',
         'language' => 'string',
-        'created_at' => 'datetime'
+        'created_at' => 'datetime',
+        'updated_at' => 'datetime',
     ];
 
     protected $hidden = [
-        'password' // Скрываем пароль в ответах
+        'password',
     ];
 
-    // Связи с другими моделями
     public function courses()
     {
         return $this->hasMany(Course::class, 'teacher_id');
@@ -56,5 +55,11 @@ class User extends Authenticatable
     public function reviews()
     {
         return $this->hasMany(Review::class, 'user_id');
+    }
+
+    public function chatGroups()
+    {
+        return $this->belongsToMany(ChatGroup::class, 'chat_group_members', 'user_id', 'group_id')
+            ->withTimestamps();
     }
 }

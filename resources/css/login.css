@@ -34,11 +34,21 @@
 .login-card {
     @apply p-8 rounded-xl bg-white shadow-lg w-full max-w-md mx-4;
     animation: loginFadeIn 0.6s ease-out;
+    border: 1px solid #e5e7eb;
 }
 
 .mud-dark-theme .login-card {
-    @apply bg-gray-700;
+    @apply bg-gray-800 border-gray-700;
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
+}
+
+/* Заголовок */
+.login-title {
+    @apply text-3xl font-bold text-gray-800 text-center mb-6;
+}
+
+.mud-dark-theme .login-title {
+    @apply text-white;
 }
 
 /* Социальные кнопки */
@@ -55,36 +65,33 @@
 }
 
 .login-google {
-    @apply bg-noble-purple;
+    @apply bg-white text-gray-700 border border-gray-300;
 }
 
 .login-google:hover {
-    background: #6a0dad;
-    transform: scale(1.05);
-    box-shadow: 0 4px 12px rgba(75, 0, 130, 0.3);
-    animation: loginPulse 1.5s infinite, loginHoverGlow 1.5s infinite;
+    @apply bg-gray-100 transform scale-105;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    animation: loginPulse 1.5s infinite;
 }
 
-.login-facebook {
-    @apply bg-noble-purple;
+.login-yandex {
+    @apply bg-red-600;
 }
 
-.login-facebook:hover {
-    background: #6a0dad;
-    transform: scale(1.05);
-    box-shadow: 0 4px 12px rgba(75, 0, 130, 0.3);
-    animation: loginPulse 1.5s infinite, loginHoverGlow 1.5s infinite;
+.login-yandex:hover {
+    @apply bg-red-700 transform scale-105;
+    box-shadow: 0 4px 12px rgba(220, 38, 38, 0.3);
+    animation: loginPulse 1.5s infinite;
 }
 
-.login-vk {
-    @apply bg-noble-purple;
+.login-mailru {
+    @apply bg-blue-600;
 }
 
-.login-vk:hover {
-    background: #6a0dad;
-    transform: scale(1.05);
-    box-shadow: 0 4px 12px rgba(75, 0, 130, 0.3);
-    animation: loginPulse 1.5s infinite, loginHoverGlow 1.5s infinite;
+.login-mailru:hover {
+    @apply bg-blue-700 transform scale-105;
+    box-shadow: 0 4px 12px rgba(37, 99, 235, 0.3);
+    animation: loginPulse 1.5s infinite;
 }
 
 /* Разделитель */
@@ -97,7 +104,7 @@
 }
 
 .mud-dark-theme .login-divider span {
-    @apply bg-gray-700 text-gray-300;
+    @apply bg-gray-800 text-gray-300;
 }
 
 .login-divider::before {
@@ -120,7 +127,7 @@
 
 .login-input {
     @apply w-full p-3 border-2 rounded-lg text-base font-sans transition-all bg-white shadow-sm;
-    border-color: var(--border-light);
+    border-color: #d1d5db;
 }
 
 .login-input:focus {
@@ -130,8 +137,8 @@
 }
 
 .mud-dark-theme .login-input {
-    @apply bg-gray-600 text-white;
-    border-color: var(--border-dark);
+    @apply bg-gray-700 text-white;
+    border-color: #4b5563;
 }
 
 .login-input-error {

@@ -17,6 +17,60 @@ class CoursesController extends Controller
         return view('courses.index', compact('courses'));
     }
 
+    public function apiIndex(Request $request)
+    {
+        $perPage = 15; // Ограничение в 15 курсов на страницу
+        $query = Course::with('teacher');
+
+        // Фильтрация по категории (style), если указана
+        if ($request->has('category') && $request->category !== 'all') {
+            $query->where('style', $request->category);
+        }
+
+        // Пагинация
+        $courses = $query->paginate($perPage);
+
+        $user = $request->user();
+        $coursesData = $courses->map(function ($course) use ($user) {
+            $isFavorite = $user ? $user->favorites()->where('course_id', $course->id)->exists() : false;
+            return [
+                'id' => $course->id,
+                'title' => $course->title_ru,
+                'description' => $course->description_ru,
+                'image' => $course->thumbnail_url,
+                'category' => $course->style,
+                'level' => $course->level,
+                'teacher' => $course->teacher ? $course->teacher->name : 'Unknown',
+                'isFavorite' => $isFavorite,
+            ];
+        });
+
+        return response()->json([
+            'data' => $coursesData,
+            'current_page' => $courses->currentPage(),
+            'last_page' => $courses->lastPage(),
+            'total' => $courses->total(),
+        ]);
+    }
+
+    public function show($id, Request $request)
+    {
+        $course = Course::with('teacher')->findOrFail($id);
+        $user = $request->user();
+        $isFavorite = $user ? $user->favorites()->where('course_id', $course->id)->exists() : false;
+
+        return response()->json([
+            'id' => $course->id,
+            'title' => $course->title_ru,
+            'description' => $course->description_ru,
+            'image' => $course->thumbnail_url,
+            'category' => $course->style,
+            'level' => $course->level,
+            'teacher' => $course->teacher ? $course->teacher->name : 'Unknown',
+            'isFavorite' => $isFavorite,
+        ]);
+    }
+
     public function store(Request $request)
     {
         $validated = $request->validate([
@@ -25,7 +79,7 @@ class CoursesController extends Controller
             'description_ru' => 'string|nullable',
             'description_en' => 'string|nullable',
             'style' => 'required|string|max:50',
-            'level' => 'required|in:beginner,intermediate,advanced'
+            'level' => 'required|in:beginner,intermediate,advanced',
         ]);
 
         if ($request->user()->role !== 'teacher') {
@@ -49,7 +103,7 @@ class CoursesController extends Controller
             'description_ru' => 'string|nullable',
             'description_en' => 'string|nullable',
             'style' => 'required|string|max:50',
-            'level' => 'required|in:beginner,intermediate,advanced'
+            'level' => 'required|in:beginner,intermediate,advanced',
         ]);
 
         $course->update($validated);

@@ -10,15 +10,17 @@ class Review extends Model
     protected $primaryKey = 'id';
 
     protected $fillable = [
-        'user_id', 'course_id', 'rating', 'comment'
+        'user_id', 'course_id', 'rating', 'comment', 'likes', 'dislikes',
     ];
 
     protected $casts = [
         'rating' => 'integer',
-        'created_at' => 'datetime'
+        'likes' => 'integer',
+        'dislikes' => 'integer',
+        'created_at' => 'datetime',
+        'updated_at' => 'datetime',
     ];
 
-    // Связи
     public function user()
     {
         return $this->belongsTo(User::class, 'user_id');

@@ -10,15 +10,16 @@ class Message extends Model
     protected $primaryKey = 'id';
 
     protected $fillable = [
-        'sender_id', 'receiver_id', 'content', 'read'
+        'sender_id', 'receiver_id', 'group_id', 'content', 'read',
     ];
 
     protected $casts = [
         'sent_at' => 'datetime',
-        'read' => 'boolean'
+        'read' => 'boolean',
+        'created_at' => 'datetime',
+        'updated_at' => 'datetime',
     ];
 
-    // Связи
     public function sender()
     {
         return $this->belongsTo(User::class, 'sender_id');
@@ -27,5 +28,10 @@ class Message extends Model
     public function receiver()
     {
         return $this->belongsTo(User::class, 'receiver_id');
+    }
+
+    public function group()
+    {
+        return $this->belongsTo(ChatGroup::class, 'group_id');
     }
 }

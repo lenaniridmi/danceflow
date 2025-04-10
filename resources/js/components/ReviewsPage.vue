@@ -12,6 +12,11 @@
                     </p>
                     <div id="reviews-add-form" class="reviews-add-form animate-fade-in-up">
                         <h2 id="reviews-add-title" class="reviews-add-title">{{ $t('addReview') }}</h2>
+                        <select id="reviews-add-course" v-model="newReview.course_id" class="reviews-add-course">
+                            <option v-for="course in courses" :key="course.id" :value="course.id">
+                                {{ course.title_ru }}
+                            </option>
+                        </select>
                         <select id="reviews-add-rating" v-model="newReview.rating" class="reviews-add-rating">
                             <option value="5">5 {{ $t('stars') }}</option>
                             <option value="4">4 {{ $t('stars') }}</option>
@@ -57,8 +62,14 @@
                                 <div class="reviews-card-info">
                                     <h3 :id="'reviews-card-author-' + review.id" class="reviews-card-author">{{ review.author }}</h3>
                                     <div :id="'reviews-card-rating-' + review.id" class="reviews-card-rating">
-                                        <i v-for="n in 5" :key="n" :class="n <= review.rating ? 'fas fa-star text-noble-purple' : 'far fa-star text-gray-400'"></i>
+                                        <i v-for="n in 5" :key="n" :class="n <= review.rating ? 'fas fa-star text-yellow-400' : 'far fa-star text-gray-400'"></i>
                                     </div>
+                                    <p :id="'reviews-card-course-' + review.id" class="reviews-card-course">
+                                        {{ $t('course') }}: {{ review.course_title }}
+                                    </p>
+                                    <p :id="'reviews-card-date-' + review.id" class="reviews-card-date">
+                                        {{ review.created_at }}
+                                    </p>
                                 </div>
                             </div>
                             <p :id="'reviews-card-text-' + review.id" class="reviews-card-text">{{ review.text }}</p>
@@ -101,14 +112,12 @@ export default {
         return {
             selectedRating: 'all',
             newReview: {
+                course_id: null,
                 rating: 5,
                 text: '',
             },
-            reviews: [
-                { id: 1, author: 'Anya', avatar: '/assets/avatar-anna.jpg', rating: 5, text: 'This course was amazing! I learned so much about hip-hop.', likes: 10, dislikes: 1, liked: false, disliked: false },
-                { id: 2, author: 'Max', avatar: '/assets/avatar-max.jpg', rating: 4, text: 'Great salsa course, but I wish there were more lessons.', likes: 8, dislikes: 2, liked: false, disliked: false },
-                { id: 3, author: 'Katya', avatar: '/assets/avatar-katya.jpg', rating: 3, text: 'The contemporary course was okay, but the instructor could be more engaging.', likes: 5, dislikes: 3, liked: false, disliked: false },
-            ],
+            reviews: [],
+            courses: [],
         };
     },
     computed: {
@@ -118,22 +127,39 @@ export default {
         },
     },
     methods: {
-        addReview() {
-            if (!this.newReview.text.trim()) return;
-            const newReview = {
-                id: this.reviews.length + 1,
-                author: 'You',
-                avatar: '/assets/avatar-placeholder.png',
-                rating: parseInt(this.newReview.rating),
-                text: this.newReview.text,
-                likes: 0,
-                dislikes: 0,
-                liked: false,
-                disliked: false,
-            };
-            this.reviews.push(newReview);
-            this.newReview.text = '';
-            this.newReview.rating = 5;
+        async fetchReviews() {
+            try {
+                const response = await window.axios.get('/api/reviews');
+                this.reviews = response.data;
+            } catch (error) {
+                console.error('Failed to fetch reviews:', error);
+            }
+        },
+        async fetchCourses() {
+            try {
+                const response = await window.axios.get('/api/courses');
+                this.courses = response.data;
+                if (this.courses.length > 0) {
+                    this.newReview.course_id = this.courses[0].id; // Устанавливаем курс по умолчанию
+                }
+            } catch (error) {
+                console.error('Failed to fetch courses:', error);
+            }
+        },
+        async addReview() {
+            if (!this.newReview.text.trim() || !this.newReview.course_id) return;
+            try {
+                const response = await window.axios.post('/api/reviews', {
+                    course_id: this.newReview.course_id,
+                    rating: parseInt(this.newReview.rating),
+                    comment: this.newReview.text,
+                });
+                this.reviews.push(response.data.review);
+                this.newReview.text = '';
+                this.newReview.rating = 5;
+            } catch (error) {
+                console.error('Failed to add review:', error);
+            }
         },
         toggleLike(reviewId) {
             const review = this.reviews.find(r => r.id === reviewId);
@@ -172,6 +198,9 @@ export default {
         },
     },
     mounted() {
+        this.fetchCourses();
+        this.fetchReviews();
+
         // Анимации при скролле
         const observer = new IntersectionObserver((entries) => {
             entries.forEach(entry => {

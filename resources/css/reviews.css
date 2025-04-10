@@ -8,9 +8,10 @@
     to { opacity: 1; transform: translateY(0); }
 }
 
-@keyframes fadeIn {
-    from { opacity: 0; }
-    to { opacity: 1; }
+@keyframes pulse {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.05); }
+    100% { transform: scale(1); }
 }
 
 /* Основной контейнер */
@@ -22,7 +23,7 @@
     @apply flex-1;
 }
 
-/* Заголовок и форма */
+/* Заголовок */
 #reviews-header {
     @apply py-16 bg-gradient-to-b from-noble-purple/10 to-background-light;
 }
@@ -50,100 +51,70 @@
     @apply text-gray-300;
 }
 
+/* Форма добавления отзыва */
 #reviews-add-form {
-    @apply mt-8 max-w-lg mx-auto p-6 rounded-xl bg-white shadow-md space-y-4;
+    @apply mt-8 max-w-lg mx-auto bg-white p-6 rounded-xl shadow-md;
     animation: fadeInUp 1s ease-out 0.4s forwards;
     opacity: 0;
 }
 
 .mud-dark-theme #reviews-add-form {
-    @apply bg-gray-700;
+    @apply bg-gray-800;
 }
 
 #reviews-add-title {
-    @apply text-2xl font-semibold text-gray-800 text-center;
+    @apply text-2xl font-semibold text-gray-800 mb-4;
 }
 
 .mud-dark-theme #reviews-add-title {
     @apply text-white;
 }
 
+#reviews-add-course,
 #reviews-add-rating {
-    @apply w-full p-3 border-2 rounded-lg font-medium cursor-pointer transition-all text-base;
-    border-color: var(--border-light);
-    background: var(--card-bg-light);
-    color: var(--text-light);
+    @apply w-full p-3 border-2 rounded-lg text-base mb-4;
+    border-color: #d1d5db;
 }
 
-#reviews-add-rating:hover {
-    border-color: var(--primary-color);
-    background: #f9f9f9;
-}
-
+.mud-dark-theme #reviews-add-course,
 .mud-dark-theme #reviews-add-rating {
-    background: var(--card-bg-dark);
-    color: var(--text-dark);
-    border-color: var(--border-dark);
-}
-
-.mud-dark-theme #reviews-add-rating:hover {
-    border-color: var(--primary-hover);
-    background: #333;
+    @apply bg-gray-700 text-white;
+    border-color: #4b5563;
 }
 
 #reviews-add-text {
-    @apply w-full p-3 border-2 rounded-lg text-base transition-colors bg-white h-32 resize-none;
-    border-color: var(--border-light);
-}
-
-#reviews-add-text:focus {
-    border-color: var(--primary-color);
-    outline: none;
+    @apply w-full p-3 border-2 rounded-lg text-base h-32 resize-none mb-4;
+    border-color: #d1d5db;
 }
 
 .mud-dark-theme #reviews-add-text {
-    @apply bg-gray-600 text-white;
-    border-color: var(--border-dark);
+    @apply bg-gray-700 text-white;
+    border-color: #4b5563;
 }
 
 #reviews-add-button {
-    @apply w-full px-4 py-2 bg-gradient-to-r from-noble-purple to-noble-purple-light text-white rounded-lg text-center transition-all duration-300;
-    box-shadow: 0 4px 15px rgba(var(--primary-rgb), 0.2);
+    @apply w-full px-6 py-3 bg-noble-purple text-white rounded-lg text-lg font-semibold transition-all;
 }
 
 #reviews-add-button:hover {
-    @apply transform scale-105;
-    background: linear-gradient(90deg, var(--primary-hover), var(--secondary-hover));
-    box-shadow: 0 6px 20px rgba(var(--primary-rgb), 0.3);
+    @apply bg-noble-purple-hover transform scale-105;
 }
 
+/* Фильтр */
 #reviews-filter {
-    @apply mt-8 flex justify-center max-w-md mx-auto;
+    @apply mt-6 max-w-md mx-auto;
     animation: fadeInUp 1s ease-out 0.6s forwards;
     opacity: 0;
 }
 
 #reviews-filter-select {
-    @apply p-3 border-2 rounded-lg font-medium cursor-pointer transition-all text-base;
-    border-color: var(--border-light);
-    background: var(--card-bg-light);
-    color: var(--text-light);
-}
-
-#reviews-filter-select:hover {
-    border-color: var(--primary-color);
-    background: #f9f9f9;
+    @apply w-full p-3 border-2 rounded-lg text-base;
+    border-color: #d1d5db;
 }
 
 .mud-dark-theme #reviews-filter-select {
-    background: var(--card-bg-dark);
-    color: var(--text-dark);
-    border-color: var(--border-dark);
-}
-
-.mud-dark-theme #reviews-filter-select:hover {
-    border-color: var(--primary-hover);
-    background: #333;
+    @apply bg-gray-700 text-white;
+    border-color: #4b5563;
 }
 
 /* Список отзывов */
@@ -157,28 +128,28 @@
 }
 
 #reviews-grid {
-    @apply grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8;
+    @apply grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6;
 }
 
 #reviews-card {
-    @apply p-6 rounded-xl bg-white shadow-md transition-all space-y-4;
+    @apply bg-white rounded-xl shadow-md p-6 transition-all duration-300;
 }
 
 .mud-dark-theme #reviews-card {
-    @apply bg-gray-700;
+    @apply bg-gray-800;
 }
 
 #reviews-card:hover {
-    @apply transform translate-y-[-10px];
-    box-shadow: 0 20px 40px rgba(75, 0, 130, 0.3);
+    @apply transform scale-105;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
 }
 
 #reviews-card-header {
-    @apply flex items-center space-x-4;
+    @apply flex items-center mb-4;
 }
 
 #reviews-card-avatar {
-    @apply w-12 h-12 rounded-full object-cover;
+    @apply w-12 h-12 rounded-full object-cover mr-4;
 }
 
 #reviews-card-info {
@@ -194,28 +165,40 @@
 }
 
 #reviews-card-rating {
-    @apply flex space-x-1;
+    @apply flex items-center mt-1;
 }
 
-#reviews-card-rating i {
-    @apply text-sm;
+#reviews-card-course {
+    @apply text-sm text-gray-600 mt-1;
 }
 
-#reviews-card-text {
-    @apply text-base text-gray-600;
-}
-
-.mud-dark-theme #reviews-card-text {
+.mud-dark-theme #reviews-card-course {
     @apply text-gray-300;
 }
 
+#reviews-card-date {
+    @apply text-sm text-gray-500 mt-1;
+}
+
+.mud-dark-theme #reviews-card-date {
+    @apply text-gray-400;
+}
+
+#reviews-card-text {
+    @apply text-gray-700 mt-2;
+}
+
+.mud-dark-theme #reviews-card-text {
+    @apply text-gray-200;
+}
+
 #reviews-card-actions {
-    @apply flex space-x-4;
+    @apply flex items-center mt-4 space-x-4;
 }
 
 #reviews-card-like,
 #reviews-card-dislike {
-    @apply flex items-center space-x-2 text-gray-600 transition-all duration-300;
+    @apply flex items-center space-x-1 text-gray-600;
 }
 
 .mud-dark-theme #reviews-card-like,
@@ -225,11 +208,12 @@
 
 #reviews-card-like:hover,
 #reviews-card-dislike:hover {
-    @apply transform scale-110;
+    @apply text-noble-purple;
 }
 
-#reviews-card.animate-fade-in-up {
-    animation: fadeInUp 0.6s ease-out forwards;
+.mud-dark-theme #reviews-card-like:hover,
+.mud-dark-theme #reviews-card-dislike:hover {
+    @apply text-noble-purple-light;
 }
 
 #reviews-empty {
@@ -246,20 +230,14 @@
 
 /* Адаптивность */
 @media (max-width: 1024px) {
-    #reviews-header {
-        @apply py-12;
-    }
-    #reviews-title {
-        @apply text-4xl;
-    }
-    #reviews-list {
-        @apply py-12;
+    #reviews-grid {
+        @apply grid-cols-1 md:grid-cols-2;
     }
 }
 
 @media (max-width: 640px) {
     #reviews-header {
-        @apply py-8;
+        @apply py-12;
     }
     #reviews-title {
         @apply text-3xl;
@@ -273,13 +251,16 @@
     #reviews-add-title {
         @apply text-xl;
     }
+    #reviews-add-course,
     #reviews-add-rating,
-    #reviews-add-text,
-    #reviews-filter-select {
+    #reviews-add-text {
         @apply p-2 text-sm;
     }
-    #reviews-add-text {
-        @apply h-24;
+    #reviews-add-button {
+        @apply px-4 py-2 text-base;
+    }
+    #reviews-grid {
+        @apply grid-cols-1;
     }
     #reviews-card {
         @apply p-4;
@@ -289,6 +270,10 @@
     }
     #reviews-card-author {
         @apply text-base;
+    }
+    #reviews-card-course,
+    #reviews-card-date {
+        @apply text-xs;
     }
     #reviews-card-text {
         @apply text-sm;

@@ -1,6 +1,6 @@
 <template>
     <footer class="footer">
-      <p>{{ $t('FooterText') }} © {{ currentYear }} SmartCalendar</p>
+      <p>{{ $t('FooterText') }} © {{ currentYear }}</p>
     </footer>
   </template>
   

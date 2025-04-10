@@ -10,12 +10,13 @@ class Course extends Model
     protected $primaryKey = 'id';
 
     protected $fillable = [
-        'title_ru', 'title_en', 'description_ru', 'description_en', 'style', 'level', 'teacher_id'
+        'title_ru', 'title_en', 'description_ru', 'description_en', 'style', 'level', 'teacher_id', 'thumbnail_url',
     ];
 
     protected $casts = [
         'level' => 'string',
-        'created_at' => 'datetime'
+        'created_at' => 'datetime',
+        'updated_at' => 'datetime',
     ];
 
     public function teacher()
